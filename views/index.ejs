@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ExoTP7</title>
+	 <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	 <!-- <link rel="icon" type="image/x-icon" href="./favicon.ico" /> -->
+</head>
+<body>
+
+	Toi : <input type="text" id="toi" name="toi">
+	Réponse : <input type="text" id="reponse" name="reponse">
+	<!-- <img src="views/lolo.jpg">
+ -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var socket = io.connect('http://localhost:3000');
+	$("#toi").keydown(function(event){
+		socket.emit("event1", event.key);
+	});
+
+
+
+   /* $('#toi').on('input',function(e){
+        socket.emit("event1", e.target.value);
+        $("#reponse").val( e.target.value);
+    });*/
+
+	socket.on("affMot", function(data){
+		$("#reponse").val(data);
+	})
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ExoTP7</title>
+	 <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+</head>
+<body>
+	<!-- <form> -->
+		palindrome : <input type="text" id="pal" name="pal">
+		<button id="envoiPal">Click</button>
+	<!-- </form> -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var socket = io.connect('http://localhost:3000');
+	socket.on("event2", function(data){
+		$("#pal").val($("#pal").val()+data);
+	});
+	$("#envoiPal").click(function(e){
+		socket.emit("envoiMot", $("#pal").val());
+	});
+})
+</script>
+</body>
+</html>
